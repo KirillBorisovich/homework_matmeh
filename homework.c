@@ -47,7 +47,7 @@ void nullElements(int array[]) {
 
 // Неполное частное
 int incompleteQuotient(const int a,const int b, int *errorCode) {
-    if (b == 0){
+    if (b == 0) {
         *errorCode = 1;
         return 0;
     }
@@ -60,9 +60,9 @@ int incompleteQuotient(const int a,const int b, int *errorCode) {
     }
     if ((a >= 0 && b > 0) || (a < 0 && b < 0)) {
         return counter;
-    }else if ((dividend == 0) || (b < 0)) {
+    } else if ((dividend == 0) || (b < 0)) {
         return -counter;
-    }else {
+    } else {
         return -counter - 1;
     }
 }
@@ -144,11 +144,11 @@ void changingArraySegments(int array[], int m) {
     for (int i = 0; i < m / 2; ++i) {
         swap(&array[i], &array[m - 1 - i]);
     }
-    for (int i = 0; i < (arrayLen - m) / 2 ; ++i){
+    for (int i = 0; i < (arrayLen - m) / 2 ; ++i) {
         swap(&array[m + i], &array[arrayLen - 1 - i]);
     }
     flippingAnArray(array, arrayLen);
-    for (int i = 0; i < arrayLen; ++i){
+    for (int i = 0; i < arrayLen; ++i) {
         printf("%d ", array[i]);
     }
 }
@@ -164,9 +164,9 @@ int main(void) {
 
     int errorCode = 0;
     int result = incompleteQuotient(-13, 5, &errorCode);
-    if (errorCode != 0){
+    if (errorCode != 0) {
         printf("\nНеполное частное:\n Error: Нельзя делить на ноль\n---------");
-    }else{
+    } else {
         printf("\nНеполное частное:\n Ответ: %d\n----------", result); 
     }
 
