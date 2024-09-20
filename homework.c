@@ -47,24 +47,23 @@ void nullElements(int array[]) {
 
 // Неполное частное
 int incompleteQuotient(const int a,const int b, int *errorCode) {
-    if (b != 0) {
-        *errorCode = 0;
-        int dividend = fabs(a), divider = fabs(b);
-        int counter = 0;
-        while (dividend >= divider) {
-            dividend -= divider;
-            ++counter;
-        }
-        if ((a >= 0 && b > 0) || (a < 0 && b < 0)) {
-            return counter;
-        }else if ((dividend == 0) || (b < 0)) {
-            return -counter;
-        }else {
-            return -counter - 1;
-        }
-    }else {
+    if (b == 0){
         *errorCode = 1;
         return 0;
+    }
+    *errorCode = 0;
+    int dividend = fabs(a), divider = fabs(b);
+    int counter = 0;
+    while (dividend >= divider) {
+        dividend -= divider;
+        ++counter;
+    }
+    if ((a >= 0 && b > 0) || (a < 0 && b < 0)) {
+        return counter;
+    }else if ((dividend == 0) || (b < 0)) {
+        return -counter;
+    }else {
+        return -counter - 1;
     }
 }
 
@@ -164,7 +163,7 @@ int main(void) {
     nullElements(arrayForNullElements);
 
     int errorCode = 0;
-    int result = incompleteQuotient(13, -5, &errorCode);
+    int result = incompleteQuotient(-13, 5, &errorCode);
     if (errorCode != 0){
         printf("\nНеполное частное:\n Error: Нельзя делить на ноль\n---------");
     }else{
@@ -177,6 +176,7 @@ int main(void) {
 
     int array[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
     int arrayLen = lenghArray(array);
-    printf("\n----------\nМассив:\n Вывод: ");
+    printf("\nМассив:\n Вывод: ");
     changingArraySegments(array, 5);
+    printf("\n----------\n");
 }
