@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Счастливые билеты
 void luckyTickets() {
@@ -129,12 +130,31 @@ int lenghArray(int array[]) {
     while (array[counter] != '\0' ) {
         ++counter;
     }
-    return counter - 2;
+    return counter;
+    
 }
 
-void changingElementsInAnArray(int array[]) {
-    swap(&array[0], &array[lenghArray(array)]);
+void flippingAnArray(int array[], int arrayLen) {
+    for (int i = 0; i < arrayLen / 2; ++i) {
+        swap(&array[i], &array[arrayLen - 1 - i]);
+    }
 }
+
+void changingArraySegments(int array[], int m) {
+    int arrayLen = lenghArray(array);
+    for (int i = 0; i < m / 2; ++i) {
+        swap(&array[i], &array[m - 1 - i]);
+    }
+    for (int i = 0; i < (arrayLen - m) / 2 ; ++i){
+        swap(&array[m + i], &array[arrayLen - 1 - i]);
+    }
+    flippingAnArray(array, arrayLen);
+    for (int i = 0; i < arrayLen; ++i){
+        printf("%d ", array[i]);
+    }
+}
+
+
 
 int main(void) {
     luckyTickets();
@@ -155,10 +175,8 @@ int main(void) {
     primeNumbers(100);
     printf("\nПодстрока:\n Количество подстрок: %d\n----------", countString("qwqwqwqw", "qw"));
 
-    int arrayForChangingElementsInAnArray[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    changingElementsInAnArray(arrayForChangingElementsInAnArray);
-    printf("\nМассив:\n первый эл. - %d; второй эл - %d\n----------", 
-    arrayForChangingElementsInAnArray[0], 
-    arrayForChangingElementsInAnArray[lenghArray(arrayForChangingElementsInAnArray)]);
+    int array[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+    int arrayLen = lenghArray(array);
+    printf("\n----------\nМассив:\n Вывод: ");
+    changingArraySegments(array, 5);
 }
-
