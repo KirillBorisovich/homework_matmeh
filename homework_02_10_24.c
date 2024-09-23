@@ -19,27 +19,27 @@ void printArray(int array[], int lengh) {
 }
 
 // Для себя
-int byMatrixMultiplication(int n) {
-    int matrix[] = {
-        1, 1,
-        1, 0
-    };
-    int matrixForMultiplication[] = {
-        1, 1,
-        1, 0
-    };
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j <= 2; j += 2) {
-            int a = 0, b = 0;
-            a = matrix[j] * matrixForMultiplication[0] + matrix[j + 1] * matrixForMultiplication[2];
-            b = matrix[j] * matrixForMultiplication[1] + matrix[j + 1] * matrixForMultiplication[3];
-            matrix[j] = a;
-            matrix[j + 1] = b;
-        }
-    }
+// int byMatrixMultiplication(int n) {
+//     int matrix[] = {
+//         1, 1,
+//         1, 0
+//     };
+//     int matrixForMultiplication[] = {
+//         1, 1,
+//         1, 0
+//     };
+//     for (int i = 0; i < n; ++i) {
+//         for (int j = 0; j <= 2; j += 2) {
+//             int a = 0, b = 0;
+//             a = matrix[j] * matrixForMultiplication[0] + matrix[j + 1] * matrixForMultiplication[2];
+//             b = matrix[j] * matrixForMultiplication[1] + matrix[j + 1] * matrixForMultiplication[3];
+//             matrix[j] = a;
+//             matrix[j + 1] = b;
+//         }
+//     }
     
-    printf("\n%d %d\n%d %d", matrix[0], matrix[1], matrix[2], matrix[3]);
-}
+//     printf("\n%d %d\n%d %d", matrix[0], matrix[1], matrix[2], matrix[3]);
+// }
 
 // Полукусорт
 void fillArray(int array[], int lengh) {
