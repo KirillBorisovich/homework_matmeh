@@ -18,6 +18,7 @@ void printArray(int array[], int lengh) {
     }
 }
 
+// Для себя
 int byMatrixMultiplication(int n) {
     int matrix[] = {
         1, 1,
