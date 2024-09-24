@@ -207,7 +207,7 @@ bool testRecursivelyFibonacci() {
     return arrayComparison(array, arrayFibonacciNumbers, 10);
 }
 bool testIterativelyFibonacci() {
-    int array[10] = { 0 }, arrayFibonacciNumbers[] = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34};
+    int array[10] = { 0 }, arrayFibonacciNumbers[] = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 };
     for (int i = 0; i < 10; ++i) {
         array[i] = iterativelyFibonacci(i);
     }
