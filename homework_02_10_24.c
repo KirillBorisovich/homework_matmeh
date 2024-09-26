@@ -176,13 +176,12 @@ void fibonacci() {
 
 // Тесты
 bool arrayComparison(int array1[], int array2[], int lenghs) {
-    bool result = true;
     for (int i = 0; i < lenghs; ++i) {
         if (array1[i] != array2[i]) {
-            result = false;
+            return false;
         }
     }
-    return result;
+    return true;
 }
 
 bool testBubbleSort() {
