@@ -78,7 +78,7 @@ float countingSort(int array[], int lengh) {
             max = array[i];
         }
     }
-    int * auxiliaryArray = (int *) calloc(max, sizeof(int));
+    int * auxiliaryArray = (int *) calloc(max + 1, sizeof(int));
     for (int i = 0; i < lengh; ++i) {
         ++auxiliaryArray[array[i]];
     }

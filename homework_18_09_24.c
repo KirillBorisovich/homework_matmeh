@@ -117,17 +117,16 @@ int countString(const char* string, const char* substring) {
     const int substringLen = strlen(substring);
     int counter = 0;
     for (int i = 0; i < stringLen - substringLen; ++i) {
-        char* sliseString = (char*) calloc(substringLen + 1, sizeof(char));
+        char* sliseString = (char*)calloc(substringLen + 1, sizeof(char));
         for (int j = 0; j < substringLen; ++j) {
             sliseString[j] = string[i + j];
         }
-        sliseString[substringLen] = '\0';
         if (strcmp(sliseString, substring) == '\0') {
             ++counter;
         }
         free(sliseString);
     }
-    
+
     return counter;
 }
 
@@ -147,7 +146,7 @@ void flippingAnArray(int array[], int arrayLen) {
     }
 }
 
-void changingArraySegments(int array[],int lengh, int m) {
+void changingArraySegments(int array[], int lengh, int m) {
     for (int i = 0; i < m / 2; ++i) {
         swap(&array[i], &array[m - 1 - i]);
     }
