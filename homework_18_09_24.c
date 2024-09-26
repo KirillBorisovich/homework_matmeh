@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
+#include <locale.h>
 
 // Счастливые билеты
 void luckyTickets() {
@@ -25,9 +26,9 @@ void luckyTickets() {
 void swap(int* left, int* right) {
     if (left != right) {
         *left ^= *right;
-        *right  ^= *left;
+        *right ^= *left;
         *left ^= *right;
-    } 
+    }
 }
 
 void twoVariables() {
@@ -46,7 +47,7 @@ void nullElements(int array[]) {
 }
 
 // Неполное частное
-int incompleteQuotient(const int a,const int b, int *errorCode) {
+int incompleteQuotient(const int a, const int b, int* errorCode) {
     if (b == 0) {
         *errorCode = 1;
         return 0;
@@ -60,9 +61,11 @@ int incompleteQuotient(const int a,const int b, int *errorCode) {
     }
     if ((a >= 0 && b > 0) || (a < 0 && b < 0)) {
         return counter;
-    } else if ((dividend == 0) || (b < 0)) {
+    }
+    else if ((dividend == 0) || (b < 0)) {
         return -counter;
-    } else {
+    }
+    else {
         return -counter - 1;
     }
 }
@@ -74,7 +77,8 @@ void balanceOfBrackets(const char string[]) {
     while (string[indexCounter] != '\0') {
         if (string[indexCounter] == '(') {
             counter += 1;
-        }else if (string[indexCounter] == ')') {
+        }
+        else if (string[indexCounter] == ')') {
             counter -= 1;
         }
         if (counter < 0) {
@@ -84,7 +88,8 @@ void balanceOfBrackets(const char string[]) {
     }
     if (counter == 0) {
         printf("\nБаланс скобок:\n Успешно\n----------");
-    }else {
+    }
+    else {
         printf("\nБаланс скобок:\n Error: Баланс скобок нарушен\n----------");
     }
 }
@@ -107,30 +112,33 @@ void primeNumbers(int theGivenNumber) {
 }
 
 // Подстрока
-int countString(char *string, char *substring) {
+int countString(const char* string, const char* substring) {
     int stringLen = strlen(string);
-    int substringLen = strlen(substring);
+    const int substringLen = strlen(substring);
     int counter = 0;
-    for (int i = 0; i < stringLen - substringLen + 1; ++i) {
-        char sliseString[substringLen];
+    for (int i = 0; i < stringLen - substringLen; ++i) {
+        char* sliseString = (char*) calloc(substringLen + 1, sizeof(char));
         for (int j = 0; j < substringLen; ++j) {
             sliseString[j] = string[i + j];
         }
+        sliseString[substringLen] = '\0';
         if (strcmp(sliseString, substring) == '\0') {
             ++counter;
         }
+        free(sliseString);
     }
+    
     return counter;
 }
 
 // Массив
 int lenghArray(int array[]) {
     int counter = 0;
-    while (array[counter] != '\0' ) {
+    while (array[counter] != '\0') {
         ++counter;
     }
     return counter;
-    
+
 }
 
 void flippingAnArray(int array[], int arrayLen) {
@@ -139,16 +147,15 @@ void flippingAnArray(int array[], int arrayLen) {
     }
 }
 
-void changingArraySegments(int array[], int m) {
-    int arrayLen = lenghArray(array);
+void changingArraySegments(int array[],int lengh, int m) {
     for (int i = 0; i < m / 2; ++i) {
         swap(&array[i], &array[m - 1 - i]);
     }
-    for (int i = 0; i < (arrayLen - m) / 2 ; ++i) {
-        swap(&array[m + i], &array[arrayLen - 1 - i]);
+    for (int i = 0; i < (lengh - m) / 2; ++i) {
+        swap(&array[m + i], &array[lengh - 1 - i]);
     }
-    flippingAnArray(array, arrayLen);
-    for (int i = 0; i < arrayLen; ++i) {
+    flippingAnArray(array, lengh);
+    for (int i = 0; i < lengh; ++i) {
         printf("%d ", array[i]);
     }
 }
@@ -156,6 +163,7 @@ void changingArraySegments(int array[], int m) {
 
 
 int main(void) {
+    setlocale(LC_ALL, "Rus");
     luckyTickets();
     twoVariables();
 
@@ -163,20 +171,22 @@ int main(void) {
     nullElements(arrayForNullElements);
 
     int errorCode = 0;
-    int result = incompleteQuotient(-13, 5, &errorCode);
+    int result = incompleteQuotient(13, -5, &errorCode);
     if (errorCode != 0) {
         printf("\nНеполное частное:\n Error: Нельзя делить на ноль\n---------");
-    } else {
-        printf("\nНеполное частное:\n Ответ: %d\n----------", result); 
+    }
+    else {
+        printf("\nНеполное частное:\n Ответ: %d\n----------", result);
     }
 
     balanceOfBrackets("())()");
     primeNumbers(100);
+
     printf("\nПодстрока:\n Количество подстрок: %d\n----------", countString("qwqwqwqw", "qw"));
 
     int array[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
     int arrayLen = lenghArray(array);
     printf("\nМассив:\n Вывод: ");
-    changingArraySegments(array, 5);
+    changingArraySegments(array, 12, 5);
     printf("\n----------\n");
 }
