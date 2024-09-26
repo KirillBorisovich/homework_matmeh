@@ -7,9 +7,9 @@
 void swap(int* left, int* right) {
     if (left != right) {
         *left ^= *right;
-        *right  ^= *left;
+        *right ^= *left;
         *left ^= *right;
-    } 
+    }
 }
 
 void printArray(int array[], int lengh) {
@@ -37,7 +37,7 @@ void printArray(int array[], int lengh) {
 //             matrix[j + 1] = b;
 //         }
 //     }
-    
+
 //     printf("\n%d %d\n%d %d", matrix[0], matrix[1], matrix[2], matrix[3]);
 // }
 
@@ -78,7 +78,7 @@ float countingSort(int array[], int lengh) {
             max = array[i];
         }
     }
-    int * auxiliaryArray = (int *) calloc(max + 1, sizeof(int));
+    int* auxiliaryArray = (int*)calloc(max + 1, sizeof(int));
     for (int i = 0; i < lengh; ++i) {
         ++auxiliaryArray[array[i]];
     }
@@ -98,7 +98,7 @@ void bubbleAndCouting() {
     int array[100000] = { 0 };
     fillArray(array, 100000);
     printf("\nBubble And Couting\n Bubble sort time: %fsec.\n Counting sort time: %fsec.\n----------",
-    bubbleSort(array, lengh), countingSort(array, lengh));
+        bubbleSort(array, lengh), countingSort(array, lengh));
 }
 
 // Возведение в степень
@@ -107,16 +107,17 @@ float ordinaryExponentiation(int number, int degree) {
     for (int i = 0; i < abs(degree); ++i) {
         result *= number;
     }
-    if (degree >= 0){
+    if (degree >= 0) {
         return result;
-    } else {
+    }
+    else {
         return (1 / result);
     }
 }
 float fastExponentiation(int number, int degree) {
     float result = 1;
     int degreeAbs = abs(degree);
-    while(degreeAbs) {
+    while (degreeAbs) {
         if (degreeAbs % 2 == 0) {
             degreeAbs /= 2;
             number *= number;
@@ -128,17 +129,19 @@ float fastExponentiation(int number, int degree) {
     }
     if (degree >= 0) {
         return result;
-    } else {
+    }
+    else {
         return 1 / result;
     }
-    
+
 }
 
 // Числа Фибоначчи
 int recursivelyFibonacci(int number) {
     if (number == 0) {
         return 0;
-    } else if (number <= 2) {
+    }
+    else if (number <= 2) {
         return 1;
     }
     return (recursivelyFibonacci(number - 1) + recursivelyFibonacci(number - 2));
@@ -146,7 +149,8 @@ int recursivelyFibonacci(int number) {
 int iterativelyFibonacci(int number) {
     if (number == 0) {
         return 0;
-    } else if (number <= 2) {
+    }
+    else if (number <= 2) {
         return 1;
     }
     int fib1 = 1, fib2 = 1, c = 0;
@@ -165,9 +169,9 @@ void fibonacci() {
     clock_t timeCounter2 = clock();
     iterativelyFibonacci(number);
     timeCounter2 = clock() - timeCounter2;
-    printf("\nFibonacci\n Recursively, number 45: %fsec.\n Iteratively, number 45: %fsec.", 
-    (float)timeCounter1 / CLOCKS_PER_SEC, 
-    (float)timeCounter2 / CLOCKS_PER_SEC);
+    printf("\nFibonacci\n Recursively, number 45: %fsec.\n Iteratively, number 45: %fsec.",
+        (float)timeCounter1 / CLOCKS_PER_SEC,
+        (float)timeCounter2 / CLOCKS_PER_SEC);
 }
 
 // Тесты
@@ -181,7 +185,7 @@ bool arrayComparison(int array1[], int array2[], int lenghs) {
     return result;
 }
 
-bool testBubbleSort(){
+bool testBubbleSort() {
     int array[] = { 1, 4, 5, 3, 2 }, sortedArray[] = { 1, 2, 3, 4, 5 };
     bubbleSort(array, 5);
     return arrayComparison(array, sortedArray, 5);
@@ -192,12 +196,14 @@ bool testCoutingSort() {
     return arrayComparison(array, sortedArray, 5);
 }
 bool testOrdinaryExponentiation() {
-    return ((ordinaryExponentiation(10, 2) == 100) && (ordinaryExponentiation(10, 0) == 1) 
-    && (ordinaryExponentiation(10, -1) == 0,1) && (ordinaryExponentiation(10, 1) == 10));
+    return ((ordinaryExponentiation(10, 2) == 100) && (ordinaryExponentiation(10, 0) == 1) && (ordinaryExponentiation(-10, 1) == -10)
+        && (ordinaryExponentiation(10, -1) == 0,1) && (ordinaryExponentiation(10, 1) == 10) && (ordinaryExponentiation(-10, 2) == 100)
+        && (ordinaryExponentiation(-10, -1) == -0,1) && (ordinaryExponentiation(-10, -2) == -0,01));
 }
 bool testFastExponentiation() {
-    return ((fastExponentiation(10, 2) == 100) && (fastExponentiation(10, 0) == 1) 
-    && (fastExponentiation(10, -1) == 0,1) && (fastExponentiation(10, 1) == 10));
+    return ((fastExponentiation(10, 2) == 100) && (fastExponentiation(10, 0) == 1) && (fastExponentiation(-10, 2) == 100)
+        && (fastExponentiation(10, -1) == 0,1) && (fastExponentiation(10, 1) == 10) && (fastExponentiation(-10, 1) == -10)
+        && (fastExponentiation(-10, -1) == -0, 1) && (fastExponentiation(-10, -2) == -0, 01));
 }
 bool testRecursivelyFibonacci() {
     int array[10] = { 0 }, arrayFibonacciNumbers[] = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 };
@@ -214,8 +220,8 @@ bool testIterativelyFibonacci() {
     return arrayComparison(array, arrayFibonacciNumbers, 10);
 }
 bool testProgram() {
-    return testBubbleSort() && testCoutingSort() && testOrdinaryExponentiation() && testFastExponentiation() 
-    && testRecursivelyFibonacci() && testIterativelyFibonacci();
+    return testBubbleSort() && testCoutingSort() && testOrdinaryExponentiation() && testFastExponentiation()
+        && testRecursivelyFibonacci() && testIterativelyFibonacci();
 }
 
 int main(void) {
@@ -224,8 +230,8 @@ int main(void) {
         return 0;
     }
     bubbleAndCouting();
-    printf("\nRaising to a power\n Ordinary: %f\n Fast: %f\n----------", 
-    ordinaryExponentiation(10, 1), 
-    fastExponentiation(10, 1));  
+    printf("\nRaising to a power\n Ordinary: %f\n Fast: %f\n----------",
+        ordinaryExponentiation(-10, -1),
+        fastExponentiation(-10, -1));
     fibonacci();
 }
